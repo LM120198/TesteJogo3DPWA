@@ -1,0 +1,18 @@
+{
+  "name": "VETOR-12 — Arena FPS Neon",
+  "short_name": "VETOR-12",
+  "description": "Arena FPS futurista: partidas rápidas com 12 combatentes, eliminação em um tiro. Jogável offline.",
+  "id": "vetor12-arena",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#05131a",
+  "theme_color": "#05131a",
+  "lang": "pt-BR",
+  "categories": ["games"],
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}
