@@ -116,7 +116,7 @@ export default function Docs({ onBack, onPlay }: { onBack: () => void; onPlay: (
         <section className={section}>
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="hud-label mb-2">Plano de implementação · v1.0</p>
+              <p className="hud-label mb-2">Plano de implementação · v1.1 — protótipo online implementado</p>
               <h1 className="font-display text-2xl md:text-4xl font-800 tracking-[0.12em] text-[var(--ice)] title-glow">
                 FPS DE ARENA · 12 JOGADORES · PWA
               </h1>
@@ -130,9 +130,13 @@ export default function Docs({ onBack, onPlay }: { onBack: () => void; onPlay: (
           <p className="mt-4 text-[var(--dim)] font-medium text-lg leading-relaxed max-w-4xl">
             Arena futurista compacta, todos-contra-todos, rodadas de 90–180 s com <strong className="text-[var(--text)]">eliminação em um tiro</strong>.
             Pistola inicial com munição infinita e power-ups temporários que definem o ritmo. O protótipo jogável
-            embutido neste app executa a simulação completa localmente (mesma lógica que rodaria no servidor autoritativo),
-            com 11 bots de skill variável ocupando as vagas da sala.
+            embutido neste app executa a simulação completa (mesma lógica que rodaria no servidor autoritativo) em três modos:
           </p>
+          <ul className="mt-3 space-y-1.5 max-w-4xl">
+            <li className="text-[var(--dim)] font-medium"><strong className="text-[var(--cyan)]">Local</strong> — até 12 combatentes com bots em 4 dificuldades (RECRUTA → LENDA) e 3 arenas (NÚCLEO, FUNDIÇÃO, GLACIAL com atrito reduzido).</li>
+            <li className="text-[var(--dim)] font-medium"><strong className="text-[var(--amber)]">Online P2P</strong> — implementado com WebRTC (sinalização PeerJS): sala por código de 5 letras, anfitrião autoritativo (inputs 30 Hz ↑, snapshots 20 Hz ↓, raycast de acerto no host), vagas vazias preenchidas por bots.</li>
+            <li className="text-[var(--dim)] font-medium"><strong className="text-[var(--green)]">PWA</strong> — instalável e jogável offline contra bots após a primeira visita.</li>
+          </ul>
         </section>
 
         {/* arquitetura */}
@@ -179,8 +183,8 @@ export default function Docs({ onBack, onPlay }: { onBack: () => void; onPlay: (
               </tr>
               <tr>
                 <td className="text-[var(--ice)] font-semibold">Transporte</td>
-                <td>WebSocket binário</td>
-                <td className="text-[var(--dim)] font-medium">Ordenado e confiável — ideal para snapshots 20 Hz. WebRTC DataChannel (não confiável) fica reservado para fase 2, para voice e estado de alta frequência.</td>
+                <td>WebSocket binário + WebRTC</td>
+                <td className="text-[var(--dim)] font-medium">Servidor dedicado: WebSocket ordenado para snapshots 20 Hz. <strong className="text-[var(--amber)]">Protótipo já usa WebRTC DataChannel (PeerJS)</strong> para salas P2P sem infraestrutura — mesmo contrato de mensagens (input/snap/ev) desenhado para o servidor dedicado.</td>
                 <td className="text-[var(--dim)] font-medium">WebTransport/QUIC quando houver suporte amplo em mobile</td>
               </tr>
               <tr>
